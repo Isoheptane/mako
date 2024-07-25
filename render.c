@@ -55,6 +55,7 @@ static void set_rounded_rectangle(cairo_t *cairo, double x, double y, double wid
 	cairo_close_path(cairo);
 }
 
+/*
 static cairo_subpixel_order_t get_cairo_subpixel_order(
 		enum wl_output_subpixel subpixel) {
 	switch (subpixel) {
@@ -72,6 +73,7 @@ static cairo_subpixel_order_t get_cairo_subpixel_order(
 	}
 	abort();
 }
+*/
 
 static void set_font_options(cairo_t *cairo, struct mako_surface *surface) {
 	if (surface->surface_output == NULL) {
@@ -79,13 +81,13 @@ static void set_font_options(cairo_t *cairo, struct mako_surface *surface) {
 	}
 
 	cairo_font_options_t *fo = cairo_font_options_create();
-	if (surface->surface_output->subpixel == WL_OUTPUT_SUBPIXEL_NONE) {
+	// if (surface->surface_output->subpixel == WL_OUTPUT_SUBPIXEL_NONE) {
 		cairo_font_options_set_antialias(fo, CAIRO_ANTIALIAS_GRAY);
-	} else {
-		cairo_font_options_set_antialias(fo, CAIRO_ANTIALIAS_SUBPIXEL);
-		cairo_font_options_set_subpixel_order(fo,
-			get_cairo_subpixel_order(surface->surface_output->subpixel));
-	}
+	// } else {
+	//	cairo_font_options_set_antialias(fo, CAIRO_ANTIALIAS_SUBPIXEL);
+	//	cairo_font_options_set_subpixel_order(fo,
+	//		get_cairo_subpixel_order(surface->surface_output->subpixel));
+	// }
 	cairo_set_font_options(cairo, fo);
 	cairo_font_options_destroy(fo);
 }
